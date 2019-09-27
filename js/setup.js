@@ -60,4 +60,84 @@ for (var i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+//  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+//  ОТКРЫТИЕ ЗАКРЫТИЕ ОКНА НАСТРОЙКИ ПЕРСОНАЖА
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+var setupUserName = document.querySelector('.setup-user-name');
+
+setupUserName.addEventListener('invalid', function () {
+  if (setupUserName.validity.tooShort) {
+    setupUserName.setCustomValidity('В имени должно быть минимум 2 символа');
+  } else if (setupUserName.validity.tooLong) {
+    setupUserName.setCustomValidity('В имени должно быть не более 25 символов');
+  } else if (setupUserName.validity.valueMissing) {
+    setupUserName.setCustomValidity('Заполните это поле');
+  }
+});
+
+//  ИЗМЕНЕНИЕ ЦВЕТА МАНТИИ ГЛАЗ И ФАЕРБОЛЛА
+
+var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
+var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
+var fireball = document.querySelector('.setup-fireball-wrap');
+
+var setColor = function (coat, eyes, fire) {
+  coat.addEventListener('click', function () {
+    coat.style.fill = arrayRandElement(coatColor);
+  });
+  eyes.addEventListener('click', function () {
+    eyes.style.fill = arrayRandElement(eyesColor);
+  });
+  fire.addEventListener('click', function () {
+    fire.style.backgroundColor = arrayRandElement(fireballColor);
+  });
+};
+
+setColor(wizardCoat, wizardEyes, fireball);
