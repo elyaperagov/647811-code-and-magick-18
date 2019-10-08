@@ -4,21 +4,6 @@
   window.backend = {
     load: function (onLoad, onError) {
       var URL = 'https://1510.dump.academy/code-and-magick/data';
-      //   var CALLBACK_NAME = 'loadUsersWizards';
-      //   var loader = document.createElement('script');
-      //   loader.src = URL + '?callback=' + CALLBACK_NAME;
-
-
-      //   loader.addEventListener('error', function () {
-      //     onError('Произошла ошибка!');
-      //   });
-
-      //   loader.addEventListener('timeout', function () {
-      //     onError('Истек таймаут ожидания ответа!');
-      //   });
-
-      //   document.body.appendChild(loader);
-      // },
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
