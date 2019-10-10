@@ -3,16 +3,17 @@
 (function () {
   window.backend = {
     load: function (onLoad, onError) {
-      var URL = 'https://1510.dump.academy/code-and-magick/data';
+      var URL = 'https://js.dump.academy/code-and-magick/data.';
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        switch (xhr.status) {
+          case 200:
             onLoad(xhr.response);
-        else {
-          onError('Произошла ошибка: ' + xhr.status + ' ' + xhr.responseText);
-          }
+            break;
+
+          default: onError('Произошла ошибка: ' + xhr.status + ' ' + xhr.responseText);
         }
       });
 
@@ -30,16 +31,17 @@
     },
 
     save: function (data, onLoad, onError) {
-      var URL = 'https://1510.dump.academy/code-and-magick';
+      var URL = 'https://js.dump.academy/code-and-magick';
       var xhr = new XMLHttpRequest();
 
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        switch (xhr.status) {
+          case 200:
             onLoad(xhr.response);
-        else {
-          onError('Произошла ошибка: ' + xhr.status + ' ' + xhr.responseText);
-          }
+            break;
+
+          default: onError('Произошла ошибка: ' + xhr.status + ' ' + xhr.responseText);
         }
       });
 
@@ -57,12 +59,3 @@
     }
   };
 })();
-
-
-var form = userDialog.querySelector('.setup-wizard-form');
-  form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), function (response) {
-      userDialog.classList.add('hidden');
-    });
-    evt.preventDefault();
-  });
