@@ -8,7 +8,7 @@
   var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
   var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
   var fireball = document.querySelector('.setup-fireball-wrap');
-
+/*
   var setColor = function (coat, eyes, fire) {
     coat.addEventListener('click', function () {
       coat.style.fill = window.arrayRandElement(coatColor);
@@ -22,5 +22,5 @@
   };
 
   setColor(wizardCoat, wizardEyes, fireball);
-
+*/
 })();
