@@ -2,12 +2,13 @@
 
 (function () {
   window.backend = {
-    load: function (onLoad, onError) {
-      var URL = 'https://js.dump.academy/code-and-magick/data';
+    load: function (URL, onLoad, onError) {
+      // var URL = 'https://js.dump.academy/code-and-magick/data';
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
+        // console.log(xhr.response);
         switch (xhr.status) {
           case 200:
             onLoad(xhr.response);
